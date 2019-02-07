@@ -1,5 +1,5 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import style from './button.css';
 
 
@@ -15,7 +15,13 @@ const buttons = (props) => {
                 </div>
             );
            break;
-   
+    case ('linkTo'):
+            tempelate = (
+               <Link to={props.linkTo} className={style.blue_btn} >
+                {props.cta}
+               </Link>
+            );
+           break;
        default:
         tempelate = null;
            break;
