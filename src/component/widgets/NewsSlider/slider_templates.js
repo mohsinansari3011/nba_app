@@ -7,13 +7,14 @@ import style from './slider.css'
 const SliderTempelates = (props) => {
 
     let template = null;
-    const setting = {
+    const settings = {
         dots:false,
         infinite :true,
         arrows:false,
         speed:100,
         slidesToShow:1,
-        slidesToScroll :1
+        slidesToScroll :1,
+        ...props.settings
     }
     
     switch (props.type) {
@@ -42,7 +43,7 @@ const SliderTempelates = (props) => {
     }
 
     return(
-        <Slick {...setting}>
+        <Slick {...settings}>
             {template}
         </Slick>
     )
