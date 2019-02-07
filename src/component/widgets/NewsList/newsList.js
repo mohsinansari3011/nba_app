@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { BaseURL } from '../../../config';
 import style from './newsList.css'
-
+import Button from '../Buttons/button'
 class NewsList extends Component {
 
     state = {
         items:[],
+        teams:[],
         start: this.props.start,
         end: this.props.start + this.props.amount,
         amount: this.props.amount,
@@ -22,6 +23,10 @@ class NewsList extends Component {
     }
 
     request = (start,end) => {
+
+        if (this.state.teams.length < 1) {
+            
+        }
 
     axios.get(`${BaseURL}/articles?_start=${start}&_end=${end}`)
         .then(Response => {
@@ -53,6 +58,7 @@ switch (type) {
         <div >
                         <div className={style.newslist_item}>
                             <Link to={`/articles/${item.id}`}> 
+                            
                             <h2>{item.title}</h2>
                             </Link>
                         </div>
@@ -80,7 +86,9 @@ switch (type) {
                 <TransitionGroup component="div" className="list">
                 {this.renderNews(this.props.type)}
                 </TransitionGroup>
-                <div onClick={()=>this.loadMore()}>Load More News!!</div>
+                <Button type="loadmore" loadMore={()=>this.loadMore()} cta="Load More News"/>
+
+                
             </div>
         );
     }
