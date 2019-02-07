@@ -1,3 +1,8 @@
 const CURRENT_YEAR = (new Date()).getFullYear();
 
-export { CURRENT_YEAR  }
+const BaseURL = 'http://localhost:3004';
+
+export {
+    CURRENT_YEAR,
+    BaseURL
+}
