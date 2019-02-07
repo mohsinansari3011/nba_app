@@ -5,6 +5,10 @@ import axios from 'axios';
 import { BaseURL } from '../../../config';
 import style from './newsList.css'
 import Button from '../Buttons/button'
+import Cardinfo from '../Cardinfo/cardinfo'
+
+
+
 class NewsList extends Component {
 
     state = {
@@ -25,7 +29,12 @@ class NewsList extends Component {
     request = (start,end) => {
 
         if (this.state.teams.length < 1) {
-            
+            axios.get(`${BaseURL}/teams`)
+            .then(resposne => {
+                this.setState({
+                    teams : resposne.data
+                })
+            })
         }
 
     axios.get(`${BaseURL}/articles?_start=${start}&_end=${end}`)
@@ -58,7 +67,8 @@ switch (type) {
         <div >
                         <div className={style.newslist_item}>
                             <Link to={`/articles/${item.id}`}> 
-                            
+                            <Cardinfo teams={this.state.teams} team={item.team} date={item.date} />
+
                             <h2>{item.title}</h2>
                             </Link>
                         </div>
