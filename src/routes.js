@@ -8,6 +8,7 @@ import NewArticles from './component/Articles/News/Post/index';
 import VideosArticles from './component/Articles/Videos/Video/index';
 
 import NewsMain from './component/Articles/News/Main/index';
+import VideosMain from './component/Articles/Videos/Main/index';
 
 class routes extends Component {
     render() {
@@ -17,6 +18,7 @@ class routes extends Component {
                     <Switch>
                         <Route path = "/" exact component = {Home}/> 
                         <Route path = "/news/" exact component = {NewsMain}/> 
+                         <Route path = "/videos/" exact component = {VideosMain}/> 
                         <Route path = "/articles/:id" exact component = {NewArticles}/> 
                         <Route path = "/videos/:id" exact component = {VideosArticles}/> 
                     </Switch>
