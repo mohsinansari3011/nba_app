@@ -58,7 +58,7 @@ switch (type) {
     case ('card'):
     tempelate = this.state.items.map((item,i) =>{
         return (
-            < CSSTransition classNames = {
+            <CSSTransition classNames = {
                 {
                     enter: style.newsList_wrapper,
                     enterActive: style.newsList_wrapper_enter
