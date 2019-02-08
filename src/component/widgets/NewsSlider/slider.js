@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import SliderTempelates from '../NewsSlider/slider_templates'
 import { BaseURL } from '../../../config';
+
+
+
 class NewsSlider extends Component {
 
 state = {

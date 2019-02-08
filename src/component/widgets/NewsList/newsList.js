@@ -79,6 +79,43 @@ switch (type) {
     })
 
         break;
+
+        case ('cardMain'):
+    tempelate = this.state.items.map((item,i) =>{
+        return (
+            <CSSTransition classNames = {
+                {
+                    enter: style.newsList_wrapper,
+                    enterActive: style.newsList_wrapper_enter
+                }
+            } timeout={500} key={i} >
+        <div >
+                       
+                            <Link to={`/articles/${item.id}`}> 
+                        <div className={style.flex_Wrapper}>
+                        <div className={style.left} style={{
+                            background:`url('/images/articles/${item.image}')`
+                        }}>
+                                <div></div>
+                        </div>
+                        <div className={style.right}>
+                        
+                         <Cardinfo teams={this.state.teams} team={item.team} date={item.date} />
+
+                            <h2>{item.title}</h2>
+                        </div> 
+
+                        </div>
+
+                           
+                            </Link>
+                        </div>
+                   
+            </CSSTransition>
+           
+        )
+    })
+    break;
     default:
     tempelate = null
         break;
