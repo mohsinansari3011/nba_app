@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import SliderTempelates from '../NewsSlider/slider_templates'
-import { BaseURL } from '../../../config';
+import { firebaseArticles , firebaselooper } from '../../../fireabase';
+
+//import axios from 'axios';
+// import { BaseURL } from '../../../config';
 
 
 
@@ -14,12 +16,20 @@ state = {
 
 componentWillMount(){
 
-    axios.get(`${BaseURL}/articles?_start=${this.props.start}&_end=${this.props.end}`)
-    .then(Response =>{
+    firebaseArticles.limitToFirst(3).once('value')
+    .then((snapshot)=>{
+        const news = firebaselooper(snapshot);
        this.setState({
-           news: Response.data
-       })
-    } )
+            news
+        })
+    })
+
+    // axios.get(`${BaseURL}/articles?_start=${this.props.start}&_end=${this.props.end}`)
+    // .then(Response =>{
+    //    this.setState({
+    //        news: Response.data
+    //    })
+    // } )
 }
 
     render() {
