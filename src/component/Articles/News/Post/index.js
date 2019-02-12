@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import style from '../../articles.css'
 import Header from './header';
 import Body from './body';
-import { db , firebaseTeams , firebaselooper} from '../../../../fireabase';
+import { db ,firebase, firebaseTeams , firebaselooper} from '../../../../fireabase';
 
 
 class NewsArticle extends Component {
@@ -12,6 +12,7 @@ class NewsArticle extends Component {
 state = {
     article:[],
     team:[],
+    imageURL:'',
 
 }
 
@@ -29,6 +30,8 @@ componentWillMount(){
                                 article,
                                 team
                            })
+
+                           this.getImageURL(article.image);
             })
         })
     // axios.get(`${BaseURL}/articles?id=${this.props.match.params.id}`)
@@ -45,6 +48,17 @@ componentWillMount(){
     // })
 }
 
+
+getImageURL = (filename) =>{
+
+    firebase.storage().ref('images').child(filename).getDownloadURL().then( url =>{
+        this.setState({
+            imageURL:url
+        })
+    })
+}
+
+
     render() {
        //const { article,team} = this.state;
        const article = this.state.article;
@@ -54,7 +68,24 @@ componentWillMount(){
             //team ? 'true' :'false'
             <div className={style.articleWrapper}>
                 <Header teamData = {team[0]} date={article.date} author = {article.author}/>
-                 < Body article={article} />
+                
+                <div className={style.articleBody}>
+            <h1>{article.title}</h1>
+            <div className={style.articleImage} style={{
+                background: `url('${this.state.imageURL}')`
+            }}>
+            
+                </div>
+
+                <div className={style.articleText}
+                dangerouslySetInnerHTML={{
+                    __html:article.body
+                }}
+                >
+                   
+                </div>
+                </div>
+
             </div>
         );
     }

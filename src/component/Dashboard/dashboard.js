@@ -5,7 +5,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import { EditorState , convertFromRaw, convertToRaw } from 'draft-js'
 import { stateToHTML } from 'draft-js-export-html';
 
-import { firebaseTeams } from '../../fireabase';
+import { firebaseTeams, firebaseArticles , firebase } from '../../fireabase';
 import Uploader from '../widgets/FileUploader/fileuploader'
 
 class Dashboard extends Component {
@@ -54,7 +54,7 @@ class Dashboard extends Component {
              valid: true,
 
          },
-         teams: {
+         team: {
                  element: 'select',
                  value: '',
                  config: {
@@ -144,9 +144,36 @@ submitForm = (event) =>{
       for (let key in this.state.formdata) {
           formIsValid = this.state.formdata[key].valid && formIsValid
       }
- console.log(dataToSubmit);
+ //console.log(dataToSubmit);
        if (formIsValid) {
-        console.log('submit post');
+
+        this.setState({
+            loading:true,
+            postError:''
+        })
+        
+        firebaseArticles.orderByChild("id")
+        .limitToLast(1).once('value')
+        .then( snapshot => {
+            let articleId = null;
+            snapshot.forEach(childsnapshot=>{
+                articleId = childsnapshot.val().id;
+            })
+
+            dataToSubmit['date'] = firebase.database.ServerValue.TIMESTAMP;
+            dataToSubmit['id'] = articleId+1;
+            dataToSubmit['team'] = parseInt(dataToSubmit['team']);
+            firebaseArticles.push(dataToSubmit)
+            .then( article =>{
+                this.props.history.push(`/articles/${article.key}`)
+            }).catch( e=>{
+                this.setState({
+                    postError:e.message
+                })
+            })
+            console.log(dataToSubmit);
+        })
+        //console.log('submit post');
     }else{
         this.setState({
             postError : 'Something went wrong!'
@@ -181,18 +208,18 @@ componentDidMount(){
 loadTeams = () =>{
     firebaseTeams.once('value')
     .then((snapshot) =>{
-        let teams = [];
+        let team = [];
         snapshot.forEach((childsnapshot) =>{
-            teams.push({
+            team.push({
                 id:childsnapshot.val().teamId,
                 name : childsnapshot.val().city
             })
         })
 
         const newFormdata = {...this.state.formdata};
-        const newElement = {...newFormdata['teams']};
-        newElement.config.options = teams;
-        newFormdata['teams'] = newElement;
+        const newElement = {...newFormdata['team']};
+        newElement.config.options = team;
+        newFormdata['team'] = newElement;
 
         this.setState({
             formdata : newFormdata
@@ -227,7 +254,7 @@ storeFilename = (filename) =>{
             onEditorStateChange={this.onEditorStateChange}
             />
 
-             <FormFeild id={'teams'} formdata={this.state.formdata.teams} 
+             <FormFeild id={'team'} formdata={this.state.formdata.team} 
             change={(element)=>this.updateForm(element)} />
 
             {this.submitButton() }

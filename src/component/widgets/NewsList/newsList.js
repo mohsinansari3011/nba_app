@@ -119,7 +119,7 @@ switch (type) {
                             <Link to={`/articles/${item.id}`}> 
                         <div className={style.flex_Wrapper}>
                         <div className={style.left} style={{
-                            background:`url('/images/articles/${item.image}')`
+                            // background:`url('/images/articles/${item.image}')`
                         }}>
                                 <div></div>
                         </div>

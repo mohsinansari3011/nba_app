@@ -10,7 +10,7 @@ const Home = () => {
            <NewsSlider type="featured" start={0} end={4} settings={{
                dots:false,
            }}/>
-           <NewsList type="card" loadmore={true} start={3} amount={3}/>
+           <NewsList type="card" loadmore={true} start={0} amount={2}/>
            <VideoList type="card" title={true} loadmore={true} start={0} amount={3}/>
 
        </div>
