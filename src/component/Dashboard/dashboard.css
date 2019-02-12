@@ -38,3 +38,9 @@
     margin-top: 5px;
     padding: 5px;
 }
+
+
+.postContainer select{
+    font-size: 20px;
+    margin-top: 10px;
+}

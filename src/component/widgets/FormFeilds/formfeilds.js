@@ -35,7 +35,21 @@ const FormFeilds =({formdata,change,id}) =>{
                     </div>
                 )
                 break;
-        
+        case ('select'):
+                fromTempelate = (
+                    <div>
+                       <select value={formdata.value} name={formdata.config.name} 
+                        onBlur={(event) => change({event,id,blur:true})}
+                        onChange={(event) => change({event,id,blur:false})}>
+                    { formdata.config.options.map((item,i) =>{
+                        return <option key={i} value={item.id}>{item.name}</option>
+                    })}
+                       </select>
+
+                        {showError()}
+                    </div>
+                )
+                break;
             default:
             fromTempelate = null;
                 break;
