@@ -1,8 +1,8 @@
 import React from 'react';
-import style from '../../articles.css'
+//import style from '../../articles.css'
 
 
-const Body = (props) =>{
+const Body = () =>{
 
     
     

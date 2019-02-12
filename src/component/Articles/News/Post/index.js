@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import { BaseURL } from '../../../../config';
 import style from '../../articles.css'
 import Header from './header';
-import Body from './body';
+//import Body from './body';
 import { db ,firebase, firebaseTeams , firebaselooper} from '../../../../fireabase';
 
 

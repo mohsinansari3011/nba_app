@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './dashboard.css'
 import FormFeild from '../widgets/FormFeilds/formfeilds';
 import { Editor } from 'react-draft-wysiwyg';
-import { EditorState , convertFromRaw, convertToRaw } from 'draft-js'
+import { EditorState } from 'draft-js'
 import { stateToHTML } from 'draft-js-export-html';
 
 import { firebaseTeams, firebaseArticles , firebase } from '../../fireabase';
@@ -162,7 +162,7 @@ submitForm = (event) =>{
 
             dataToSubmit['date'] = firebase.database.ServerValue.TIMESTAMP;
             dataToSubmit['id'] = articleId+1;
-            dataToSubmit['team'] = parseInt(dataToSubmit['team']);
+            dataToSubmit['team'] = parseInt(dataToSubmit['team'],10);
             firebaseArticles.push(dataToSubmit)
             .then( article =>{
                 this.props.history.push(`/articles/${article.key}`)

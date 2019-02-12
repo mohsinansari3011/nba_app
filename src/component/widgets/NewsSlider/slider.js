@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SliderTempelates from '../NewsSlider/slider_templates'
 import { firebase, firebaseArticles , firebaselooper } from '../../../fireabase';
-import { resolve } from 'url';
+//import { resolve } from 'url';
 
 //import axios from 'axios';
 // import { BaseURL } from '../../../config';
