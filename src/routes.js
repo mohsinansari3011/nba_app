@@ -14,8 +14,8 @@ import SignIn from './component/Signin/signin'
 import Dashboard from './component/Dashboard/dashboard'
 
 
-import PrivateRoutes from './component/AuthRoutes/privateRoutes/';
-import PublicRoutes from './component/AuthRoutes/publicRoutes/';
+import PrivateRoute from './component/AuthRoutes/privateRoutes';
+import PublicRoute from './component/AuthRoutes/publicRoutes';
 
 class routes extends Component {
     render() {
@@ -24,13 +24,13 @@ class routes extends Component {
             <div>
                 <Layout user={this.props.user}>
                     <Switch>
-                        <Route path = "/" exact component = {Home}/> 
-                        <Route path = "/news/" exact component = {NewsMain}/> 
-                         <Route path = "/videos/" exact component = {VideosMain}/> 
-                        <Route path = "/articles/:id" exact component = {NewArticles}/> 
-                        <Route path = "/videos/:id" exact component = {VideosArticles}/> 
-                        <Route path = "/sign-in/" exact component = {SignIn}/> 
-                        <Route path = "/dashboard/" exact component = {Dashboard}/> 
+                        <PublicRoute {...this.props} restricted={false} path = "/" exact component = {Home}/> 
+                        <PublicRoute {...this.props} restricted={false} path = "/news/" exact component = {NewsMain}/> 
+                         <PublicRoute {...this.props} restricted={false} path = "/videos/" exact component = {VideosMain}/> 
+                        <PublicRoute {...this.props} restricted={false} path = "/articles/:id" exact component = {NewArticles}/> 
+                        <PublicRoute {...this.props} restricted={false} path = "/videos/:id" exact component = {VideosArticles}/> 
+                        <PublicRoute {...this.props} restricted={true} path = "/sign-in/" exact component = {SignIn}/> 
+                        <PrivateRoute {...this.props} path = "/dashboard/" exact component = {Dashboard}/> 
                     </Switch>
                 </Layout>
             </div>
