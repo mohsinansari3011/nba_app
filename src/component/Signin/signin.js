@@ -97,16 +97,64 @@ validate = (element) =>{
     return error;
 }
 
+
+ submitButton = () =>{
+
+    return(
+    this.state.loading ?
+     'loading...' : 
+     <div>
+         <button onClick={(event) => this.submitForm(event,false)} > Register Now</button>
+         <button onClick={(event) => this.submitForm(event,true)} > Login </button>
+    </div>)
+ }
+
+submitForm = (event,type) =>{
+    event.preventDefault();
+    if(type !== null){
+
+        let dataToSubmit = {};
+        let formIsValid = true;
+
+        for(let key in this.state.formdata)
+        {
+            dataToSubmit[key] = this.state.formdata[key].value;
+        }
+        for(let key in this.state.formdata){
+            formIsValid = this.state.formdata[key].valid && formIsValid
+        }
+
+        if (formIsValid) {
+            this.setState({
+                loading:true,
+                registorError:''
+            })
+
+            if (type) {
+                 console.log('LOG IN');
+            }else{
+                console.log('REGISTER');
+            }
+            //console.log(dataToSubmit);
+        }
+    }
+
+}
+
+
+
     render() {
         return (
             <div className={style.logContainer}>
-               <from>
+               <from onSubmit={(event)=>this.submitForm(event,null)}>
                    <h2>Register/Login</h2>
             <FormFeild id={'email'} formdata={this.state.formdata.email} 
             change={(element)=>this.updateForm(element)} />
              <FormFeild id={'password'} formdata={this.state.formdata.password} 
             change={(element)=>this.updateForm(element)} />
                </from>
+
+               {this.submitButton() }
             </div>
         );
     }
