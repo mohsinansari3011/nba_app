@@ -13,6 +13,10 @@ import VideosMain from './component/Articles/Videos/Main/index';
 import SignIn from './component/Signin/signin'
 import Dashboard from './component/Dashboard/dashboard'
 
+
+import PrivateRoutes from './component/AuthRoutes/privateRoutes/';
+import PublicRoutes from './component/AuthRoutes/publicRoutes/';
+
 class routes extends Component {
     render() {
         //console.log(this.props)
