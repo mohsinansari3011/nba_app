@@ -14,6 +14,7 @@ import SignIn from './component/Signin/signin'
 
 class routes extends Component {
     render() {
+        console.log(this.props)
         return (
             <div>
                 <Layout>

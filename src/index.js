@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
 import { BrowserRouter} from 'react-router-dom'
-
+import { firebase } from './fireabase';
 
 import Routes from './routes'
 
-const App = () =>{
+const App = (props) =>{
 
     return (
         <BrowserRouter>
-            <Routes />
+            <Routes {...props} />
         </BrowserRouter>
     )
 }
@@ -19,8 +19,10 @@ const App = () =>{
 
 
 
+firebase.auth().onAuthStateChanged((user) =>{
+ReactDOM.render(<App user={user} />, document.getElementById('root'));
+})
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
 
 serviceWorker.register();

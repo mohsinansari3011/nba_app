@@ -21,7 +21,9 @@ this.setState({
     render() {
         return (
             <div>
-               < Header showNav = {this.state.showNav}
+               < Header 
+                user={this.props.user}
+                showNav = {this.state.showNav}
                 onHideNav={() => this.togglesidenav(false) }
                 onOpenNav = {() => this.togglesidenav(true)}
                />
