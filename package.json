@@ -49,6 +49,7 @@
     "react-dev-utils": "^7.0.1",
     "react-dom": "^16.7.0",
     "react-draft-wysiwyg": "^1.13.1",
+    "react-firebase-file-uploader": "^2.4.2",
     "react-fontawesome": "^1.6.1",
     "react-simple-sidenav": "^1.0.1",
     "react-slick": "^0.23.2",

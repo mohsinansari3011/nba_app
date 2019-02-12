@@ -6,6 +6,7 @@ import { EditorState , convertFromRaw, convertToRaw } from 'draft-js'
 import { stateToHTML } from 'draft-js-export-html';
 
 import { firebaseTeams } from '../../fireabase';
+import Uploader from '../widgets/FileUploader/fileuploader'
 
 class Dashboard extends Component {
 
@@ -47,6 +48,11 @@ class Dashboard extends Component {
              value: '',
              valid: true,
            
+         }, image: {
+             element: 'image',
+             value: '',
+             valid: true,
+
          },
          teams: {
                  element: 'select',
@@ -194,12 +200,21 @@ loadTeams = () =>{
        
     })
 }
+ 
+
+storeFilename = (filename) =>{
+ this.updateForm({id:'image'},filename)
+}
+
 
     render() {
         return (
             <div className={style.postContainer}>
                 <form onSubmit={this.submitForm}>
                 <h2>Add Post</h2>
+
+
+                <Uploader filename={ (filename)=>this.storeFilename(filename) }/>
 
                  <FormFeild id={'author'} formdata={this.state.formdata.author} 
             change={(element)=>this.updateForm(element)} />
