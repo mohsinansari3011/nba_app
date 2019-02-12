@@ -11,6 +11,7 @@ import NewsMain from './component/Articles/News/Main/index';
 import VideosMain from './component/Articles/Videos/Main/index';
 
 import SignIn from './component/Signin/signin'
+import Dashboard from './component/Dashboard/dashboard'
 
 class routes extends Component {
     render() {
@@ -25,6 +26,7 @@ class routes extends Component {
                         <Route path = "/articles/:id" exact component = {NewArticles}/> 
                         <Route path = "/videos/:id" exact component = {VideosArticles}/> 
                         <Route path = "/sign-in/" exact component = {SignIn}/> 
+                        <Route path = "/dashboard/" exact component = {Dashboard}/> 
                     </Switch>
                 </Layout>
             </div>
