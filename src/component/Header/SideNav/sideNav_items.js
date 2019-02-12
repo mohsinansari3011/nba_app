@@ -9,6 +9,7 @@ import {firebase} from '../../../fireabase';
 const SideNavItems = (props) =>{
 
     
+    
 const items = [{
     type: style.option,
     icon : 'home',
@@ -61,6 +62,7 @@ const element = (item,i) => (
 const restricted = (item, i) => {
 let template = null;
 
+
 if(props.user === null && item.login)
 {
     template = element(item, i);
@@ -94,6 +96,7 @@ return template;
 const showItems = () => {
     return items.map( (item,i) => {
         return(
+            
          item.login !== '' ? restricted(item, i) : element(item, i)
         )
     } )
